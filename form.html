@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #34495e;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+    <h2>Register</h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <div class="error" id="nameError"></div>
+
+    <input type="email" id="email" placeholder="Enter Email">
+    <div class="error" id="emailError"></div>
+
+    <input type="text" id="phone" placeholder="Enter Phone Number">
+    <div class="error" id="phoneError"></div>
+
+    <input type="password" id="password" placeholder="Enter Password">
+    <div class="error" id="passError"></div>
+
+    <input type="password" id="confirm" placeholder="Confirm Password">
+    <div class="error" id="confirmError"></div>
+
+    <button onclick="validateForm()">Submit</button>
+
+</div>
+
+<script>
+function validateForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    let valid = true;
+
+    // Clear errors
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("phoneError").innerText = "";
+    document.getElementById("passError").innerText = "";
+    document.getElementById("confirmError").innerText = "";
+
+    // Name validation
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        valid = false;
+    }
+
+    // Email validation
+    if (email === "" || !email.includes("@")) {
+        document.getElementById("emailError").innerText = "Valid email required";
+        valid = false;
+    }
+
+    // Phone validation
+    if (phone.length !== 11) {
+        document.getElementById("phoneError").innerText = "Phone must be 11 digits";
+        valid = false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        document.getElementById("passError").innerText = "Password must be at least 6 characters";
+        valid = false;
+    }
+
+    // Confirm password
+    if (password !== confirm) {
+        document.getElementById("confirmError").innerText = "Passwords do not match";
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Registration Successful 🎉");
+    }
+}
+</script>
+
+</body>
+</html>
